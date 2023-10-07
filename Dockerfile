@@ -12,3 +12,5 @@ COPY index.ts index.ts
 COPY prisma prisma
 
 RUN npm run build
+
+ENTRYPOINT [ "npm", "start" ]
