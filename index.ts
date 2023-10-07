@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -9,6 +10,7 @@ const prisma = new PrismaClient();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const jwtSecret = process.env.SECRET_KEY || ""
 
