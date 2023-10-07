@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+    launch-backend:
+        build: ./
+        container_name: excel-launch-backend
+        restart: always
+        env_file: ./.env
+        command: npm start
+        ports:
+            - "4000:4000"
