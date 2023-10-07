@@ -15,7 +15,7 @@ const jwtSecret = process.env.SECRET_KEY || ""
 
 // ... Other imports and setup ...
 
-app.post('/setstatus', async (req: Request, res: Response) => {
+app.post('/status', async (req: Request, res: Response) => {
     try {
       const authorizationHeader = req.headers.authorization;
       
@@ -56,7 +56,7 @@ app.post('/setstatus', async (req: Request, res: Response) => {
   
   // ... Rest of the code ...
   
-app.get('/getstatus', async (req: Request, res: Response) => {
+app.get('/status', async (req: Request, res: Response) => {
   try {
     const logoStatus = await prisma.lauchStatus.findUnique({ where: { id: 1 } });
 
