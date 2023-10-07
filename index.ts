@@ -71,6 +71,10 @@ app.get('/getstatus', async (req: Request, res: Response) => {
   }
 });
 
+app.get("/ping", (req: Request, res: Response) => {
+  res.status(200).json(({message:"pong", status:"OK"}))
+})
+
 app.use((err: Error, req: Request, res: Response, next: any) => {
   if (err.name === 'UnauthorizedError') {
     return res.status(401).json({ error: 'Unauthorized' });
