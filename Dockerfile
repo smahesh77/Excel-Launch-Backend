@@ -10,6 +10,8 @@ RUN npm install
 
 COPY index.ts index.ts
 COPY prisma prisma
+COPY routes routes
+COPY middleware middleware
 
 RUN npm run build
 
