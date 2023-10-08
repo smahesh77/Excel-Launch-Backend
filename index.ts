@@ -34,7 +34,7 @@ app.use('/:id', async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Link not found' });
     }
 
-    return res.status(307).redirect(link.target);
+    return res.redirect(307,link.target);
   } catch (error) {
     console.error('Error redirecting to link target:', error);
     return res.status(500).json({ error: 'Internal server error' });
