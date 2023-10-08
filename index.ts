@@ -1,7 +1,8 @@
-import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+import express, { Request, Response } from 'express';
 import launchRoutes from './routes/launchRoute';
 import dynamicLinkRoutes from './routes/linkRoute';
 
@@ -21,6 +22,25 @@ app.use('/launch', launchRoutes);
 
 // Dynamic Link routes
 app.use('/links', dynamicLinkRoutes);
+
+
+app.use('/:id', async (req: Request, res: Response) => {
+  try {
+    const linkId = req.params.id;
+
+    const link = await prisma.dynamicLink.findUnique({ where: { id: linkId } });
+
+    if (!link) {
+      return res.status(404).json({ error: 'Link not found' });
+    }
+
+    return res.status(307).redirect(link.target);
+  } catch (error) {
+    console.error('Error redirecting to link target:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 app.use((err: Error, req: express.Request, res: express.Response, next: () => void) => {
   if (err.name === 'UnauthorizedError') {

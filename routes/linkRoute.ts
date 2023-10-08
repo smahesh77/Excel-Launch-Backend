@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import jwt from 'jsonwebtoken';
 import { validateToken } from '../middleware/authMiddleware';
 
 const router = express.Router();
