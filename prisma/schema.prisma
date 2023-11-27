@@ -10,7 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model LauchStatus {
-  id     Int   @id
-  logoStatus Boolean
+// Prisma schema (schema.prisma)
+
+model LaunchStatus {
+  id            Int       @id @default(autoincrement())
+  websiteStatus Boolean   @default(false)
+  mascotStatus  Boolean   @default(false)
+}
+
+model DynamicLink {
+  id     String @id @map(name: "id") @unique
+  target String
 }
